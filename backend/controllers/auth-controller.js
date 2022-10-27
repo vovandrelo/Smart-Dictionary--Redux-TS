@@ -38,10 +38,6 @@ class AuthController {
         // Получение из запроса на регистрацию данных пользователя:
         const { login, pass, name, email } = req.body;
 
-        /*
-            ... Валидация
-        */
-
         // Проверка на существование пользователя с таким логином или email:
         const checkResult = await authModel.checkingForExistence(login, email);
 
