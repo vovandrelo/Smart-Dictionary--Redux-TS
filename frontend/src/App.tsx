@@ -1,13 +1,21 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Test from "./components/test-comp";
+import Container from "./components/container/container";
+import MainPage from "./pages/main-page";
+import AuthPage from "./pages/auth-page";
+import Header from "./components/header/header";
+import Footer from "./components/footer/footer";
 
 const App = () => {
     return (
         <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Test/>}/>
-                <Route path="/auth" element={<h1>Registartion WWW</h1>}/>
-            </Routes>
+            <Container>
+                <Header/>
+                <Routes>
+                    <Route path="/" element={<MainPage/>} />
+                    <Route path="/auth" element={<AuthPage/>} />
+                </Routes>
+                <Footer/>
+            </Container>
         </BrowserRouter>
    )
 }
