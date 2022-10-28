@@ -6,7 +6,7 @@ import { KEY } from "../config.js";
 class AuthController {
     async login(req, res) {
         // Получение из запроса на авторизацию данных пользователя:
-        const { login, pass } = req.body;
+        const { login, pass } = req.body.data;
 
         // Получение пользователя из БД:
         const getUserResult = await authModel.getUser(login);
@@ -26,17 +26,17 @@ class AuthController {
                 // Создание токена:
                 const token = Jwt.sign({ id, login, role }, KEY, { expiresIn: '5h' });
                 // Ответ пользователю с JWT-токеном:
-                return res.status(200).json({error: false, masseage: "Authorization completed successfully", token })
+                return res.status(200).json({error: false, message: "Authorization completed successfully", token })
             // Если пароли не совпадают, то:
             } else {
                 // Высылаем на клиент ошибку авторизации:
-                return res.status(400).json({error: true, masseage: "Invalid password"})
+                return res.status(400).json({error: true, message: "Invalid password"})
             }
         }
     }
     async registration(req, res) {
         // Получение из запроса на регистрацию данных пользователя:
-        const { login, pass, name, email } = req.body;
+        const { login, pass, name, email } = req.body.data;
 
         // Проверка на существование пользователя с таким логином или email:
         const checkResult = await authModel.checkingForExistence(login, email);

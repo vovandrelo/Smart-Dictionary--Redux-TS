@@ -4,7 +4,7 @@ import { KEY } from "../config.js";
 class AuthMiddleware {
     checkJWT(req, res, next) {
         const token = req.header.authorization.split(" ")[1];
-        console.log(Jwt.verify("dsdsds", KEY));
+        console.log(Jwt.verify("Проверка JWT", KEY));
         /* if (token && Jwt.verify(token, KEY)) {
             const { id, login, role } = Jwt.verify(token, KEY);
             req.user = { id, login, role }
@@ -16,7 +16,7 @@ class AuthMiddleware {
     }
     loginValidator(req, res, next) {
         // Извлечение логина из запроса:
-        const { login } = req.body;
+        const { login } = req.body.data;
 
         // Ошибка при валидации возникнет в случае, если выполнится хотя бы одно условие:
         // Условие №1 - Первым символом будет любой символ кроме буквы: (^[^a-zA-Z]);
@@ -31,7 +31,7 @@ class AuthMiddleware {
         // Или возникла ошибка валидации, то:
         if (!login || login.length < 5 || isErrorCheck) {
             // Высылаем на клиент ошибку валидации:
-            return res.status(403).json({ error: true, message: "The login is incorrect"});
+            return res.status(400).json({ error: true, message: "The login is incorrect"});
         // Если ошибок при проверке логина выявлено не было, то запускаем следующую middleware():
         } else {
             next();
@@ -39,7 +39,7 @@ class AuthMiddleware {
     }
     emailValidator(req, res, next) {
         // Извлечение email из запроса:
-        const { email } = req.body;
+        const { email } = req.body.data;
 
         // Ошибка при валидации возникнет, если email не будет удовлетворять заданному шаблону:
         // "@<хотя бы одна любая буква или число>.<хотя бы одна любая буква или число>"
@@ -51,7 +51,7 @@ class AuthMiddleware {
         // Или возникла ошибка валидации, то:
         if (!email || email.length < 7 || isErrorCheck) {
             // Высылаем на клиент ошибку валидации:
-            return res.status(403).json({ error: true, message: "The email is incorrect"});
+            return res.status(400).json({ error: true, message: "The email is incorrect"});
         // Если ошибок при проверке email выявлено не было, то запускаем следующую middleware():
         } else {
             next();
@@ -59,7 +59,7 @@ class AuthMiddleware {
     }
     passValidator(req, res, next) {
         // Извлечение пароля из запроса:
-        const { pass } = req.body;
+        const { pass } = req.body.data;
 
         // Ошибка при валидации возникнет в случае, если будут использованы запрещённые символы.
         // Доступными являются символы: любая буква, любое число, символ "-".
@@ -71,7 +71,7 @@ class AuthMiddleware {
         // Или возникла ошибка валидации, то:
         if (!pass || pass.length < 8 || isErrorCheck) {
             // Высылаем на клиент ошибку валидации:
-            return res.status(403).json({ error: true, message: "The pass is incorrect"});
+            return res.status(400).json({ error: true, message: "The pass is incorrect"});
         // Если ошибок при проверке пароля выявлено не было, то запускаем следующую middleware():
         } else {
             next();

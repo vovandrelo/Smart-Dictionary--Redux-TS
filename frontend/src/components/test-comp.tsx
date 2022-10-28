@@ -1,7 +1,12 @@
 import React from "react";
-
+import { useAppDispatch } from "../store/hooks";
+import { loginThunk } from "../store/modules/auth/middlewares/login-thunk";
+import { registrThunk } from "../store/modules/registr/middlewares/registr-thunk";
 
 const Test = () => {
+    const dispatch = useAppDispatch();
+
+
     const submitHandler = async (event: React.FormEvent) => {
         event.preventDefault();
         if (event.target instanceof HTMLFormElement) {
@@ -14,15 +19,7 @@ const Test = () => {
                 const email = event.target[2].value;
                 const pass = event.target[3].value;
 
-                const response = await (await fetch("http://localhost:3001/auth/registration/", {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({login, pass, name, email})
-                })).json();
-
-                console.log(response);
+                dispatch(registrThunk({login, pass, name, email}))
             }
         }
     }
@@ -35,15 +32,7 @@ const Test = () => {
                 const login = event.target[0].value;
                 const pass = event.target[1].value;
 
-                const response = await (await fetch("http://localhost:3001/auth/login/", {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({login, pass})
-                })).json();
-
-                console.log(response);
+                dispatch(loginThunk({login, pass}))
             }
         }
     }
