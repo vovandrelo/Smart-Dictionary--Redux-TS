@@ -11,13 +11,13 @@ const Header = () => {
             </div>
 
             <nav className={style.navigate}>
-                <NavLink to="/posts" className={({isActive}) => classNames(style.item, {[style.active]: isActive})}>Учить</NavLink>
-                <NavLink to="/albums" className={({isActive}) => classNames(style.item, {[style.active]: isActive})}>Словарь</NavLink>
-                <NavLink to="/todos" className={({isActive}) => classNames(style.item, {[style.active]: isActive})}>Повторить</NavLink>
+                <NavLink to="/" className={({isActive}) => classNames(style.item, {[style.active]: isActive})}>Учить</NavLink>
+                <NavLink to="/" className={({isActive}) => classNames(style.item, {[style.active]: isActive})}>Словарь</NavLink>
+                <NavLink to="/" className={({isActive}) => classNames(style.item, {[style.active]: isActive})}>Повторить</NavLink>
             </nav>
 
             <div className={style.icons}>
-                <NavLink to="/auth" className={({isActive}) => classNames(style.item, {[style.active]: isActive})}>Войти</NavLink>
+                <NavLink to="/" className={({isActive}) => classNames(style.item, {[style.active]: isActive})}>Войти</NavLink>
             </div>
         </header>
     )
