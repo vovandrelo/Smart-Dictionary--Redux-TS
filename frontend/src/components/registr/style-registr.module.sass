@@ -1,0 +1,40 @@
+@import '../../vars.sass'
+
+
+.root
+    color: white
+    padding: 30px
+    width: 425px
+    display: flex
+    align-items: center
+    fieldset
+        display: flex
+        width: 100%
+        flex-direction: column
+        .title
+            font-size: 24px
+        .input
+            font-size: 18px
+            margin-top: 30px
+            color: $blue
+            border-bottom: 1px solid #7a7a7a
+            padding-bottom: 5px
+            &::placeholder
+                color: #7a7a7a
+            &-correct
+                border-bottom: 1px solid $blue
+            &-in-correct
+                border-bottom: 1px solid $blue
+        .button
+            display: flex
+            justify-content: center
+            align-items: center
+            font-size: 18px
+            margin-top: 50px
+            transition: color 0.4s
+            padding: 5px 0px
+            border: 1px solid $blue
+            border-radius: 10px
+            &:hover
+                color: $blue
+                

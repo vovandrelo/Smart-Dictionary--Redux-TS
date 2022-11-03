@@ -17,7 +17,7 @@ const Header = () => {
             </nav>
 
             <div className={style.icons}>
-                <NavLink to="/" className={({isActive}) => classNames(style.item, {[style.active]: isActive})}>Войти</NavLink>
+                <NavLink to="/auth" className={({isActive}) => classNames(style.item, {[style.active]: isActive})}>Войти</NavLink>
             </div>
         </header>
     )

@@ -1,11 +1,12 @@
-
+import AuthContainer from "../containers/auth-container";
+import Container from "../components/container/container";
 import style from "./style-pages.module.sass";
 
 const AuthPage = () => {
     return (
-        <div className={style.page}>
-
-        </div>
+        <Container>
+            <AuthContainer/>
+        </Container>
     )
 }
 
