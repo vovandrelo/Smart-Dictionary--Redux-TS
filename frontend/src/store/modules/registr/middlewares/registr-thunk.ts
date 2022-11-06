@@ -5,7 +5,7 @@ import { registrActions } from "..";
 export const registrThunk = (userData: { login: string, pass: string, email: string, name: string }): AppThunk =>
     async (dispatch, getState) => {
         // Если пользователь авторизован, то отменяем запрос на регистрацию:
-        if (getState().auth.isAuth) {
+        if (getState().login.isLogin) {
             return;
         }
 

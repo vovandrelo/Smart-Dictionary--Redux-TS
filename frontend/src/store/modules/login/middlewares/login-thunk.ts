@@ -1,16 +1,16 @@
 import { AppThunk } from "../../..";
 import axios from "axios";
-import { authActions } from "..";
+import { loginActions } from "..";
 
 export const loginThunk = (userData: { login: string, pass: string }): AppThunk =>
     async (dispatch, getState) => {
         // Если пользователь уже авторизован, то отменяем запрос на авторизацию:
-        if (getState().auth.isAuth) {
+        if (getState().login.isLogin) {
             return;
         }
 
         // Запускаем действие начала авторизации:
-        dispatch(authActions.startAuth());
+        dispatch(loginActions.startLogin());
 
         try {
             // Отправка данных на сервер для авторизации. В случае успещного запроса сервер пришлёт информацию об отсутствии ошибок и токен:
@@ -21,9 +21,9 @@ export const loginThunk = (userData: { login: string, pass: string }): AppThunk 
                 },
             });       
             // Если запрос был выполнен успешно, то запускаем действие удачной авторизации:
-            dispatch(authActions.successAuth({message, error, token}))
+            dispatch(loginActions.successLogin({message, error, token}))
         } catch (error: any) {
             // Если запрос был выполнен с ошибкой, то запускаем действие неудачной авторизации:
-            dispatch(authActions.failedAuth(error.response.data.message));
+            dispatch(loginActions.failedLogin(error.response.data.message));
         }        
     };

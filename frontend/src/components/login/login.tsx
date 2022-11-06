@@ -1,14 +1,16 @@
 import { useState } from "react";
 import style from "./style-login.module.sass";
 import classNames from "classnames";
+
 interface PropsType {
     loginValid: boolean,
     passValid: boolean,
     userDataVerify: (dataType: string, data: string) => void,
+    loginUser: (login: string, pass: string) => void,
 }
 
 const Login = (props: PropsType) => {
-    const { loginValid, passValid, userDataVerify} = props;
+    const { loginValid, passValid, userDataVerify, loginUser} = props;
     const [login, setLogin] = useState<string>("");
     const [pass, setPass] = useState<string>("");
 
@@ -31,8 +33,20 @@ const Login = (props: PropsType) => {
         }
     }
 
+    const onSubmitHandler = (event: React.FormEvent) => {
+        event.preventDefault();
+        if (loginValid && passValid) {
+            loginUser(login, pass);
+            setLogin("");
+            setPass("");
+        } else {
+            // Тут сделать выввод сообщения: "Не все поля заполнены"
+        }
+    }
+
+
     return (
-        <form className={style.root}>
+        <form className={style.root} onSubmit={onSubmitHandler}>
             <fieldset>
                 <legend className={style.title}>Авторизация</legend>
 

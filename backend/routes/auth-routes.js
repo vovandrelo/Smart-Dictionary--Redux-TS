@@ -12,7 +12,7 @@ const checkPass = authMiddleware.passValidator;
 //<==================================== ОБРАБОТКА МАРШРУТОВ РЕГИСТРАЦИИ И АВТОРИЗАЦИИ ===================================>\\
 // Обработка маршрутов на авторизацию и регистрацию. Перед выполнением самой авторизации или регистрации запускаются
 // вспомогательные middleware, которые выполняют валидацию данных (логина, email и пароля):
-authRouter.post("/login", checkLogin, authController.login);
+authRouter.post("/login", checkLogin, checkPass, authController.login);
 authRouter.post("/registration", checkLogin, checkEmail, checkPass, authController.registration);
 
 export default authRouter;

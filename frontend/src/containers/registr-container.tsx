@@ -1,17 +1,20 @@
-import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { useState } from "react";
-import validator from "../assets/lib/validator";
-import Registr from "../components/registr/registr";
-import { registrThunk } from "../store/modules/registr/middlewares/registr-thunk";
-import Error from "../components/error/error";
-import { selectRegistrLoadingStatus, selectRegistrLoadingMessage } from "../store/modules/registr/selectors";
-import { LOADING_STATUSES } from "../store/constants/loading-statuses";
+
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { registrActions } from "../store/modules/registr";
+import { selectRegistrLoadingStatus, selectRegistrLoadingMessage } from "../store/modules/registr/selectors";
+import { registrThunk } from "../store/modules/registr/middlewares/registr-thunk";
+import { LOADING_STATUSES } from "../store/constants/loading-statuses";
+
+import Registr from "../components/registr/registr";
+import Error from "../components/error/error";
 import Spinner from "../components/spinner/spinner";
 import Accept from "../components/accept/Accept";
 
+import validator from "../assets/lib/validator";
+
 interface PropsType {
-    externalStyles: any
+    externalStyles?: any
 }
 
 const RegistrContainer = (props: PropsType) => {

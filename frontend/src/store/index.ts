@@ -1,7 +1,7 @@
 //<============================================ ИМПОРТ НЕОБХОДИМЫХ БИБЛИОТЕК ============================================>\\
 
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import { authReducer } from './modules/auth';
+import { loginReducer } from './modules/login';
 import { registrReducer } from './modules/registr';
 import { AnyAction } from 'redux';
 
@@ -19,7 +19,7 @@ export type AppThunk<ReturnType = void> = ThunkAction<      // Тип Thunk-и
 
 //<=========================================== СОЗДАНИЕ ГЛОБАЛЬНОГО СОСТОЯНИЯ ===========================================>\\
 const rootReducer = {
-    auth: authReducer,
+    login: loginReducer,
     registr: registrReducer,
 }
 
