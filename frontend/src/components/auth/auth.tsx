@@ -35,7 +35,7 @@ const Auth = (props: PropsType) => {
                 <div className={classNames(style.moveable, {[style["pos-right"]]: authState === "registr", [style["pos-left"]]: authState === "login"})}>
                     <div className={classNames(style["moveable-form"], {[style["pos-right"]]: authState === "registr", [style["pos-left"]]: authState === "login"} )}>
                         <LoginContainer/>
-                        <RegistrContainer />
+                        <RegistrContainer externalStyles={style}/>
                     </div>
                 </div>
             </div>

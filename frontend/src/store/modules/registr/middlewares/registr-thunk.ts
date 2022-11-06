@@ -11,7 +11,6 @@ export const registrThunk = (userData: { login: string, pass: string, email: str
 
         // Запускаем действие начала регистрации:
         dispatch(registrActions.startRegistr());
-        
 
         try {
             // Отправка данных на сервер для регистрации. В случае успещного запроса сервер пришлёт информацию об отсутствии ошибок:

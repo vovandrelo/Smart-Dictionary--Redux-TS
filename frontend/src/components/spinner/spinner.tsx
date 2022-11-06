@@ -3,20 +3,21 @@ import classNames from "classnames"
 import style from "./style-spinner.module.sass";
 
 interface PropsType {
-    externalStyles: typeof style
+    externalStyles?: typeof style
 }
 
 const Spinner = (props: PropsType) => {
     const { externalStyles } = props;
     return (
-        <svg
-            className={classNames(style, externalStyles)}
-            xmlns="http://www.w3.org/2000/svg"
-            version="1"
-            viewBox="0 0 128 128">
+        <div className={classNames(style.root, externalStyles?.["spinner-block"])}>
+            <svg
+                className={classNames(style.spinner, externalStyles?.["spinner"])}
+                xmlns="http://www.w3.org/2000/svg"
+                version="1"
+                viewBox="0 0 128 128"
+            >
                 <g>
                     <path
-                        fill="#40e783"
                         d="M64 9.75A54.25 54.25 0 009.75 64H0a64 64 0 01128 0h-9.75A54.25 54.25 0 0064 9.75z">
                     </path>
                     <animateTransform
@@ -28,7 +29,8 @@ const Spinner = (props: PropsType) => {
                         type="rotate">
                     </animateTransform>
                 </g>
-        </svg>
+            </svg>
+        </div>
     );
 }
 
