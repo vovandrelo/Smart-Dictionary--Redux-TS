@@ -12,7 +12,7 @@ const Header = () => {
 
             <nav className={style.navigate}>
                 <NavLink to="/" className={({isActive}) => classNames(style.item, {[style.active]: isActive})}>Учить</NavLink>
-                <NavLink to="/" className={({isActive}) => classNames(style.item, {[style.active]: isActive})}>Словарь</NavLink>
+                <NavLink to="/dictionary" className={({isActive}) => classNames(style.item, {[style.active]: isActive})}>Словарь</NavLink>
                 <NavLink to="/" className={({isActive}) => classNames(style.item, {[style.active]: isActive})}>Повторить</NavLink>
             </nav>
 
