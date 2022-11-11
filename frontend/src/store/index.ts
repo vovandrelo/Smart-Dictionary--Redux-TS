@@ -3,6 +3,7 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import { loginReducer } from './modules/login';
 import { registrReducer } from './modules/registr';
+import { dictionaryReducer } from './modules/collections/dictionary';
 import { AnyAction } from 'redux';
 
 //<=========================================== ФОРМИРОВАНИЕ НЕОБХОДИМЫХ ТИПОВ ===========================================>\\
@@ -21,6 +22,7 @@ export type AppThunk<ReturnType = void> = ThunkAction<      // Тип Thunk-и
 const rootReducer = {
     login: loginReducer,
     registr: registrReducer,
+    dictionary: dictionaryReducer,
 }
 
 //<================================================ КОНФИГУРАЦИЯ STOR-А =================================================>\\

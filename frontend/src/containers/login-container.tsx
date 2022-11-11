@@ -8,9 +8,12 @@ import { LOADING_STATUSES } from "../store/constants/loading-statuses";
 import { useNavigate } from "react-router-dom";
 
 import Login from "../components/login/login";
-import Spinner from "../components/spinner/spinner";
-import Error from "../components/error/error";
-import Accept from "../components/accept/Accept";
+import Error from "../components/icons/error/error";
+import Accept from "../components/icons/accept/accept";
+import Notify from "../components/notify/notify";
+import Button from "../components/button/button";
+import Spinner from "../components/icons/spinner/spinner";
+
 
 import validator from "../assets/lib/validator";
 
@@ -55,28 +58,27 @@ const LoginContainer = (props: PropsType) => {
 
     if (loadingStatus === LOADING_STATUSES.inProgress) {
         return (
-            <Spinner
-                externalStyles={externalStyles}
-            />
+            <div className={externalStyles["spinner-block"]}>
+                <Spinner externalStyles={externalStyles["spinner"]}/>
+            </div>
         ) 
     } else if (loadingStatus === LOADING_STATUSES.failed) {
         return (
-            <Error
-                externalStyles={externalStyles}
-                errorMessage={loadingMessage}
-                btnText="Попробовать ещё раз"
-                clickHandler={() => dispatch(loginActions.resetStatusLogin())}
-            />
+            <div className={externalStyles["error-block"]}>
+                <Error externalStyles={externalStyles["error-img"]}/>
+                <Notify externalStyles={externalStyles["error-message"]} text={loadingMessage}/>
+                <Button externalStyles={externalStyles["error-btn"]} text={"Попробовать ещё раз"} clickHandler={() => dispatch(loginActions.resetStatusLogin())}/>
+            </div>
         )  
     } else if (loadingStatus === LOADING_STATUSES.success) {
         setTimeout(() => {
             navigate("/");
         }, 1000);
         return (
-            <Accept
-                externalStyles={externalStyles}
-                acceptMessage={loadingMessage}
-            />
+            <div className={externalStyles["accept-block"]}>
+                <Accept externalStyles={externalStyles["accept-img"]}/>
+                <Notify externalStyles={externalStyles["accept-message"]} text={loadingMessage}/>
+            </div>
         )
     }
 

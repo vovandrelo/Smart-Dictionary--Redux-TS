@@ -7,9 +7,11 @@ import { registrThunk } from "../store/modules/registr/middlewares/registr-thunk
 import { LOADING_STATUSES } from "../store/constants/loading-statuses";
 
 import Registr from "../components/registr/registr";
-import Error from "../components/error/error";
-import Spinner from "../components/spinner/spinner";
-import Accept from "../components/accept/Accept";
+import Error from "../components/icons/error/error";
+import Accept from "../components/icons/accept/accept";
+import Notify from "../components/notify/notify";
+import Button from "../components/button/button";
+import Spinner from "../components/icons/spinner/spinner";
 
 import validator from "../assets/lib/validator";
 
@@ -67,28 +69,27 @@ const RegistrContainer = (props: PropsType) => {
 
     if (loadingStatus === LOADING_STATUSES.inProgress) {
         return (
-            <Spinner
-                externalStyles={externalStyles}
-            />
-        ) 
+            <div className={externalStyles["spinner-block"]}>
+                <Spinner externalStyles={externalStyles["spinner"]}/>
+            </div>
+        )
     } else if (loadingStatus === LOADING_STATUSES.failed) {
         return (
-            <Error
-                externalStyles={externalStyles}
-                errorMessage={loadingMessage}
-                btnText="Попробовать ещё раз"
-                clickHandler={() => dispatch(registrActions.resetStatusRegistr())}
-            />
-        )  
+            <div className={externalStyles["error-block"]}>
+                <Error externalStyles={externalStyles["error-img"]}/>
+                <Notify externalStyles={externalStyles["error-message"]} text={loadingMessage}/>
+                <Button externalStyles={externalStyles["error-btn"]} text={"Попробовать ещё раз"} clickHandler={() => dispatch(registrActions.resetStatusRegistr())}/>
+            </div>
+        )
     } else if (loadingStatus === LOADING_STATUSES.success) {
         setTimeout(() => {
             dispatch(registrActions.resetStatusRegistr())
         }, 2000);
         return (
-            <Accept
-                externalStyles={externalStyles}
-                acceptMessage={loadingMessage}
-            />
+            <div className={externalStyles["accept-block"]}>
+                <Accept externalStyles={externalStyles["accept-img"]}/>
+                <Notify externalStyles={externalStyles["accept-message"]} text={loadingMessage}/>
+            </div>
         )
     } else {
         return (

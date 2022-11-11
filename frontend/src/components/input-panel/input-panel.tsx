@@ -21,14 +21,13 @@ const InputPanel = (props: PropsType) => {
     }
 
     return (
-        <div className={style.root}>
-            <input
-                type="text"
-                placeholder={placeholder ? placeholder : ""}
-                onChange={onChangeSubmit}
-                value={inputValue}
-                className={classNames(style.input, externalStyles)}/>
-        </div>
+        <input
+            type="text"
+            placeholder={placeholder ? placeholder : ""}
+            onChange={onChangeSubmit}
+            value={inputValue}
+            className={classNames(style.root, externalStyles)}
+        />
     )
 }
 
