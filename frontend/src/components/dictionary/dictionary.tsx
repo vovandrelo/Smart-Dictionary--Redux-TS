@@ -25,62 +25,63 @@ const Dictionary = (props: PropsType) => {
         <div className={classNames(style["root"], externalStyles)}>
             <ul className={style["list"]}>
                 <li className={style["list-item"]}>
-                    <div className={style["list-item-translate"]}>
-                        <div >Car</div>
-                        <div>Автомобиль</div>
+                    <div className={style["translate-block"]}>
+                        <div className={style["translate-word"]}>Car</div>
+                        <div className={style["translate-word"]}>Автомобиль</div>
                         <div className={style["icons"]}>
-                            <ArrowDownIcon externalStyles={classNames(style["arrow"], {[style["hidden"]]: visibleExample})} clickHandler={showExample}/>
+                            <ArrowDownIcon externalStyles={classNames(style["arrow"], {[style["hidden"]]: !visibleExample})} clickHandler={showExample}/>
                             <LearnIcon externalStyles={style["learn"]}/>
                             <EditIcon externalStyles={style["edit"]}/>
                             <TrashIcon externalStyles={style["trash"]}/>
                             
                         </div>
                     </div>
-                    <div className={classNames(style["list-item-example"], { [style["hidden"]]: visibleExample })}>
-                        <div className={style["list-item-example-title"]}>Примеры использования:</div>
-                        <ul className={style["list-item-example-list"]}>
+                    <div className={classNames(style["example"], { [style["hidden"]]: !visibleExample })}>
+                        <div className={style["example-title"]}>Примеры использования:</div>
+                        <ul className={style["example-list"]}>
                             <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
                         </ul>
                     </div>
                 </li>
                 <li className={style["list-item"]}>
-                    <div className={style["list-item-translate"]}>
-                        <div >Car</div>
-                        <div>Автомобиль</div>
+                    <div className={style["translate-block"]}>
+                        <div className={style["translate-word"]}>Example</div>
+                        <div className={style["translate-word"]}>Пример</div>
                         <div className={style["icons"]}>
-                            <ArrowDownIcon externalStyles={classNames(style["arrow"], {[style["hidden"]]: visibleExample})} clickHandler={showExample}/>
+                            <ArrowDownIcon externalStyles={classNames(style["arrow"], {[style["hidden"]]: true})} clickHandler={showExample}/>
                             <LearnIcon externalStyles={style["learn"]}/>
                             <EditIcon externalStyles={style["edit"]}/>
                             <TrashIcon externalStyles={style["trash"]}/>
                             
                         </div>
                     </div>
-                    <div className={classNames(style["list-item-example"], { [style["hidden"]]: visibleExample })}>
-                        <div className={style["list-item-example-title"]}>Примеры использования:</div>
-                        <ul className={style["list-item-example-list"]}>
+                    <div className={classNames(style["example"], { [style["hidden"]]: true })}>
+                        <div className={style["example-title"]}>Примеры использования:</div>
+                        <ul className={style["example-list"]}>
                             <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
                         </ul>
                     </div>
                 </li>
                 <li className={style["list-item"]}>
-                    <div className={style["list-item-translate"]}>
-                        <div >Car</div>
-                        <div>Автомобиль</div>
+                    <div className={style["translate-block"]}>
+                        <div className={style["translate-word"]}>Implementation</div>
+                        <div className={style["translate-word"]}>Реализация</div>
                         <div className={style["icons"]}>
-                            <ArrowDownIcon externalStyles={classNames(style["arrow"], {[style["hidden"]]: visibleExample})} clickHandler={showExample}/>
+                            <ArrowDownIcon externalStyles={classNames(style["arrow"], {[style["hidden"]]: true})} clickHandler={showExample}/>
                             <LearnIcon externalStyles={style["learn"]}/>
                             <EditIcon externalStyles={style["edit"]}/>
                             <TrashIcon externalStyles={style["trash"]}/>
                             
                         </div>
                     </div>
-                    <div className={classNames(style["list-item-example"], { [style["hidden"]]: visibleExample })}>
-                        <div className={style["list-item-example-title"]}>Примеры использования:</div>
-                        <ul className={style["list-item-example-list"]}>
+                    <div className={classNames(style["example"], { [style["hidden"]]: true })}>
+                        <div className={style["example-title"]}>Примеры использования:</div>
+                        <ul className={style["example-list"]}>
                             <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
                         </ul>
                     </div>
                 </li>
+                
             </ul>
         </div>
     )

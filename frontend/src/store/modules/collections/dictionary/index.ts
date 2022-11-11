@@ -12,7 +12,6 @@ interface DictionaryState {
     ids: number[],
     loadingStatus: LOADING_STATUSES,
     loadingMessage: string,
-    modalState: "open" | "close",
 }
 
 const initialState: DictionaryState = {
@@ -20,7 +19,6 @@ const initialState: DictionaryState = {
     ids: [],
     loadingStatus: LOADING_STATUSES.notStarted,
     loadingMessage: "",
-    modalState: "close",
 };
 
 
@@ -28,9 +26,7 @@ export const DictionarySlice = createSlice({
     name: "dictionary",
     initialState,
     reducers: {
-        updateStateModal: (state) => {
-            state.modalState = state.modalState === "open" ? "close" : "open";
-        }
+        
     }
 });
 

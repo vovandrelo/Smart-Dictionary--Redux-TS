@@ -1,17 +1,13 @@
 import React from "react";
 import SearchDictionary from "../components/search-dictionary/search-dictionary";
-import { useAppDispatch } from "../store/hooks";
-import { dictionaryActions } from "../store/modules/collections/dictionary";
+import { useNavigate } from "react-router-dom";
+
 
 const SearchDictionaryContainer = () => {
-    const dispatch = useAppDispatch();
-
-    const addNewWord = (event: React.MouseEvent) => {
-        dispatch(dictionaryActions.updateStateModal());
-    }
+    const navigate = useNavigate();
 
     return (
-        <SearchDictionary addNewWord={addNewWord}/>
+        <SearchDictionary navigate={navigate}/>
     )
 }
 

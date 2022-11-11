@@ -6,7 +6,8 @@ import style from "./style-input-panel.module.sass";
 
 interface PropsType {
     externalStyles?: typeof style,
-    placeholder?: string
+    placeholder?: string,
+    getInputValue?: () => string,
 }
 
 const InputPanel = (props: PropsType) => {

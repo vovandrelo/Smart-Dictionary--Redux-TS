@@ -18,10 +18,13 @@
             overflow: hidden
             &:last-child
                 border-bottom: none
-            &-translate
-                display: flex
-                justify-content: space-between
-            &-example
+            .translate
+                &-block
+                    display: flex
+                    justify-content: space-between
+                &-word
+                    width: 50%
+            .example
                 transition: max-height 0.3s
                 max-height: 100px
                 &.hidden
