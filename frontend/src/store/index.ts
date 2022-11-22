@@ -6,6 +6,7 @@ import { registrReducer } from './modules/registr';
 import { dictionaryReducer } from './modules/collections/dictionary';
 import { AnyAction } from 'redux';
 
+
 //<=========================================== ФОРМИРОВАНИЕ НЕОБХОДИМЫХ ТИПОВ ===========================================>\\
 
 export type AppDispatch = typeof store.dispatch;            // Тип dispatch-а

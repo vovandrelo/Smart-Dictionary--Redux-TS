@@ -1,13 +1,12 @@
 import Container from "../components/container/container";
-import InputPanel from "../components/input-panel/input-panel";
 import Dictionary from "../components/dictionary/dictionary";
-import SearchDictionaryContainer from "../containers/search-dictionary-container";
 import { Outlet } from "react-router-dom";
+import SearchDictionary from "../components/search-dictionary/search-dictionary";
 
 const DictionaryPage = () => {
     return (
         <Container>
-            <SearchDictionaryContainer/>
+            <SearchDictionary/>
             <Dictionary/>
             <Outlet/>
         </Container>

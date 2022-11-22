@@ -6,21 +6,38 @@
     border-radius: 10px
     background: -webkit-linear-gradient(45deg, #108cc5,#00c4cd,#4dee74)
     background: linear-gradient(45deg, #108cc5,#00c4cd,#4dee74)
-    .title
-        font-size: 24px
-        color: $black
-        text-align: center
-    .translate
-        &-block
-            display: flex
-            justify-content: space-between
-            align-items: center
+    .new-word-block
+        .title
+            color: $black
+            text-align: center
+            font-size: 24px
+        .input
             margin-top: 10px
-            .arrows
-                width: 3%
-        &-input
-            width: 47%
+            width: 100%
             border: none
+
+    .translate-block
+        .title
+            margin-top: 10px
+            color: $black
+            text-align: left
+            font-size: 20px
+        .input
+            margin-top: 5px
+            width: 100%
+            border: none
+
+
+    .examples-block
+        .title
+            color: $black
+            text-align: left
+            font-size: 20px
+        .input
+            margin-top: 5px
+            width: 100%
+            border: none
+
 
     .plus-block
         border-radius: 100%
@@ -40,16 +57,7 @@
         &:hover
             background-color: $black
             fill: $green
-    
-    .notify
-        font-size: 20px
-        color: $black
-        text-align: left
-        margin-top: 10px
-    .example
-        border: none
-        width: 100%
-        margin-top: 10px
+
     .button
         width: 200px
         border: 1px solid $black
@@ -59,3 +67,6 @@
             width: 250px
             background-color: $black
             color: $green
+
+    .error-input
+        border: 1px solid red

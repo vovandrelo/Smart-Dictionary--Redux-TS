@@ -1,23 +1,23 @@
 import React, { useState } from "react";
 import classNames from "classnames";
-import { isInputElement } from "react-router-dom/dist/dom";
 
 import style from "./style-input-panel.module.sass";
 
 interface PropsType {
     externalStyles?: typeof style,
     placeholder?: string,
-    getInputValue?: () => string,
+    getInputValue?: (value: string) => void,
 }
 
 const InputPanel = (props: PropsType) => {
-    const {externalStyles, placeholder} = props;
+    const {externalStyles, placeholder, getInputValue} = props;
 
     const [inputValue, setInputValue] = useState("");
 
-    const onChangeSubmit = (event: React.ChangeEvent) => {
+    const onChangeHandler = (event: React.ChangeEvent) => {
         if (event && event.target instanceof HTMLInputElement) {
             setInputValue(event.target.value)
+            if (getInputValue) getInputValue(event.target.value);
         }
     }
 
@@ -25,7 +25,7 @@ const InputPanel = (props: PropsType) => {
         <input
             type="text"
             placeholder={placeholder ? placeholder : ""}
-            onChange={onChangeSubmit}
+            onChange={onChangeHandler}
             value={inputValue}
             className={classNames(style.root, externalStyles)}
         />

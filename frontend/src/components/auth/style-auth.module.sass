@@ -26,16 +26,21 @@
                 font-size: 16px
                 margin-top: 10px
             .button
-                width: 100%
                 display: flex
                 justify-content: center
                 align-items: center
                 font-size: 18px
-                margin-top: 30px
-                transition: color 0.4s
                 padding: 5px 0px
                 border: 1px solid $black
                 border-radius: 10px
+
+                transition: color 0.4s, width 0.4s, background-color 0.4s
+                margin: 30px auto 0 auto
+                width: 80%
+                &:hover
+                    color: $green
+                    width: 100%
+                    background-color: $black
 
         .moveable
             position: absolute
@@ -75,12 +80,18 @@
     .error-message
         margin-top: 20px
     .error-btn
-        margin-top: 20px
-        width: 300px
+        width: 270px
         color: white
         border: 1px solid white
+        transition: color 0.4s, width 0.4s, background-color 0.4s
+        margin: 20px auto 0 auto
         &:hover
-            border: 1px solid #9F0013
+            border: 1px solid $green
+            color: $black
+            width: 300px
+            background-color: $green
+        
+
 
 .spinner-block
     width: 425px
