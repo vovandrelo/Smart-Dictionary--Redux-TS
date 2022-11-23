@@ -7,6 +7,7 @@ import { PORT } from './config.js';
 
 //<==================================================== ИМПОРТ РОУТОВ ===================================================>\\
 import authRouter from './routes/auth-routes.js';
+import dictionaryRouter from './routes/dictionary-routes.js';
 
 //<=============================================== КОНФИГУРАЦИЯ ПРИЛОЖЕНИЯ ==============================================>\\
 const app = express();                                          // Создание объекта Node-приложения
@@ -20,12 +21,13 @@ const corsOptions = {                                           // Отключ�
 
 app.use(express.static(join(__dirname, "..", "frontend")));     // Установка пути до статических файлов
 app.use(express.json());                                        // Парсинг JSON
-app.use(cors(corsOptions))
+app.use(cors(corsOptions))                                      // Отмена CORS-защиты
 
 
 //<================================================== ОБЪЯВЛЕНИЕ РОУТОВ =================================================>\\
 
 app.use("/auth", authRouter);
+app.use("/dictionary", dictionaryRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello World!')

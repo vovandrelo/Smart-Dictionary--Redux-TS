@@ -20,7 +20,6 @@ class AuthModel {
         } catch (error) {
             return { error: true, message: "Something went wrong..." }
         }
-        
     }
 
     async getUser(login) {

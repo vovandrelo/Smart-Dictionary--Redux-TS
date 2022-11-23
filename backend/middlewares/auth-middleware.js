@@ -2,17 +2,29 @@ import Jwt from "jsonwebtoken";
 import { KEY } from "../config.js";
 
 class AuthMiddleware {
+    // Проверка Jwt-токена:
     checkJWT(req, res, next) {
-        const token = req.header.authorization.split(" ")[1];
-        console.log(Jwt.verify("Проверка JWT", KEY));
-        /* if (token && Jwt.verify(token, KEY)) {
-            const { id, login, role } = Jwt.verify(token, KEY);
-            req.user = { id, login, role }
-            next()
-
-        } else {
-            res.status(403).json({error: true, message: "Authorization error"})
-        } */
+        try {
+            console.log(req.headers);
+            // Извлекаем Jwt-токен из запроса:
+            const token = req.headers.authorization;
+            // Извлекаем данные из Jwt-токена
+            const userData = Jwt.verify(token, KEY);
+            // Если данные были извлечены успешно и токен корректный, то:
+            if (token && userData) {
+                // Добавляем в запрос данные о пользователе и запускаем следующую middleware:
+                const { id, login, role } = userData;
+                req.user = { id, login, role };
+                next();
+            // Если токен некорректный, то:
+            } else {
+                throw new Error();
+            }
+        // Если при работе с Jwt-токеном произошла ошибка, то:
+        } catch(err) {
+            // Высылаем на клиент ошибку Jwt-токена:
+            return res.status(403).json({error: true, message: "Authorization error. Jwt is incorrect"})
+        }
     }
     loginValidator(req, res, next) {
         // Извлечение логина из запроса:

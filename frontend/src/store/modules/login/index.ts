@@ -49,6 +49,7 @@ export const loginSlice = createSlice({
             state.isLogin = false;
             state.loadingStatus = LOADING_STATUSES.notStarted;
             state.loadingMessage = "";
+            localStorage.clear();
         }
     },
 });
