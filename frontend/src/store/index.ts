@@ -3,7 +3,7 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import { loginReducer } from './modules/login';
 import { registrReducer } from './modules/registr';
-import { dictionaryReducer } from './modules/collections/dictionary';
+import { dictionaryReducer } from './modules/dictionary';
 import { AnyAction } from 'redux';
 
 

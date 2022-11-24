@@ -5,7 +5,6 @@ class AuthMiddleware {
     // Проверка Jwt-токена:
     checkJWT(req, res, next) {
         try {
-            console.log(req.headers);
             // Извлекаем Jwt-токен из запроса:
             const token = req.headers.authorization;
             // Извлекаем данные из Jwt-токена

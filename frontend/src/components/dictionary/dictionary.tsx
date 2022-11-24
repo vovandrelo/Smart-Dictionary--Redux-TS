@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import classNames from "classnames";
 import style from "./style-dictionary.module.sass";
 
+import WordContainer from "../../containers/word-container";
+
 import LearnIcon from "../icons/learn/learn";
 import EditIcon from "../icons/edit/edit";
 import TrashIcon from "../icons/trash/trash";
@@ -9,22 +11,20 @@ import ArrowDownIcon from "../icons/arrow-down/arrow-down";
 
 
 interface PropsType {
+    wordsIds: number[],
     externalStyles?: typeof style,
 }
 
 const Dictionary = (props: PropsType) => {
-    const {externalStyles} = props;
+    const { externalStyles, wordsIds } = props;
     const [visibleExample, setVisibleExample] = useState(false);
 
-    const showExample = (event: React.MouseEvent) => {
-        event.preventDefault();
-        setVisibleExample(visibleExample => !visibleExample);
-    }
 
     return (
         <div className={classNames(style["root"], externalStyles)}>
             <ul className={style["list"]}>
-                <li className={style["list-item"]}>
+                {wordsIds.map(wordId => <WordContainer key={wordId} wordId={wordId}/>)}
+                {/* <li className={style["list-item"]}>
                     <div className={style["translate-block"]}>
                         <div className={style["translate-word"]}>Car</div>
                         <div className={style["translate-word"]}>Автомобиль</div>
@@ -42,8 +42,8 @@ const Dictionary = (props: PropsType) => {
                             <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
                         </ul>
                     </div>
-                </li>
-                <li className={style["list-item"]}>
+                </li> */}
+                {/* <li className={style["list-item"]}>
                     <div className={style["translate-block"]}>
                         <div className={style["translate-word"]}>Example</div>
                         <div className={style["translate-word"]}>Пример</div>
@@ -61,8 +61,8 @@ const Dictionary = (props: PropsType) => {
                             <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
                         </ul>
                     </div>
-                </li>
-                <li className={style["list-item"]}>
+                </li> */}
+                {/* <li className={style["list-item"]}>
                     <div className={style["translate-block"]}>
                         <div className={style["translate-word"]}>Implementation</div>
                         <div className={style["translate-word"]}>Реализация</div>
@@ -80,7 +80,7 @@ const Dictionary = (props: PropsType) => {
                             <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
                         </ul>
                     </div>
-                </li>
+                </li> */}
                 
             </ul>
         </div>

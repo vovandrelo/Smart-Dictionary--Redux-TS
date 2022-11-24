@@ -14,7 +14,7 @@ export interface LoginState {
 }
 
 const initialState: LoginState = {
-    isLogin: false,
+    isLogin: true,
     loadingStatus: LOADING_STATUSES.notStarted,
     loadingMessage: "",
 };

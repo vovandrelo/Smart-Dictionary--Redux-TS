@@ -1,7 +1,7 @@
 
 import InputPanel from "../../components/input-panel/input-panel";
 import { useAppDispatch } from "../../store/hooks";
-import { dictionaryActions } from "../../store/modules/collections/dictionary";
+import { dictionaryActions } from "../../store/modules/dictionary";
 
 interface PropsType {
     idxExample: number,

@@ -1,0 +1,64 @@
+@import "../../vars.sass"
+
+.root
+    margin-top: 10px
+    font-size: 18px
+    border-bottom: 1px solid #7a7a7a
+    padding-bottom: 10px
+    overflow: hidden
+    &:last-child
+        border-bottom: none
+    .translate
+        &-block
+            display: flex
+            justify-content: space-between
+        &-word
+            width: 50%
+    .example
+        transition: max-height 0.3s
+        max-height: 100px
+        &.hidden
+            max-height: 0px
+            overflow: hidden
+        &-title
+            margin: 10px auto
+            position: relative
+            color: #7a7a7a
+        &-list
+            margin-left: 30px
+            li
+                list-style-type: disc
+
+.icons
+    width: 150px
+    display: flex
+    justify-content: space-between
+    align-items: center
+    .trash
+        width: 17px
+        height: 17px
+        fill: $blue
+        cursor: pointer
+        transition: fill 0.5s
+        &:hover
+            fill: red
+    .edit
+        width: 18px
+        height: 18px
+        fill: $blue
+        cursor: pointer
+    .arrow
+        transform: rotate(180deg)
+        width: 20px
+        height: 20px
+        fill: $blue
+        cursor: pointer
+        transition: transform 0.5s
+        &.hidden
+            transform: rotate(0deg)
+
+    .learn
+        width: 24px
+        height: 24px
+        fill: $blue
+        cursor: pointer

@@ -1,19 +1,26 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { LOADING_STATUSES } from "../../../constants/loading-statuses";
+import { LOADING_STATUSES } from "../../constants/loading-statuses";
 
 
-interface DictionaryWord {
-    
+export interface DictionaryWord {
+    id: number,
+    idUser: number,
+    value: string,
+    translations: string[],
+    examples: string[],
+    dateAdded: string,
+    nextRepeat: string,
+    stage: number,
 }
 
 interface DictionaryState {
     entities: {
-        [propName: string]: DictionaryWord,
+        [propName: number]: DictionaryWord,
     },
     ids: number[],
     loadingStatus: LOADING_STATUSES,
     updatingStatus: LOADING_STATUSES,
-    loadingMessage: string,
+    responseMessage: string,
     editableWord: {
 
     },
@@ -35,7 +42,7 @@ const initialState: DictionaryState = {
         translations: [""],
         examples: [""],
     },
-    loadingMessage: "",
+    responseMessage: "",
 };
 
 export const DictionarySlice = createSlice({
@@ -82,7 +89,43 @@ export const DictionarySlice = createSlice({
             } else if (wordType === "editable") {
 
             }
-        }
+        },
+
+
+
+        startLoading: (state) => {
+            state.loadingStatus = LOADING_STATUSES.inProgress;
+        },
+        startUpdating: (state) => {
+            state.updatingStatus = LOADING_STATUSES.inProgress;
+        },
+        successLoading: (state, action: PayloadAction<{ message: string, error: boolean, words: DictionaryWord[] }>) => {
+            const { message, error, words } = action.payload;
+
+            state.ids = words.map(word => word.id);
+            state.entities = words.reduce((acc, word) => {
+                acc[word.id] = word;
+                return acc;
+            }, state.entities);
+
+            state.loadingStatus = LOADING_STATUSES.success;
+            state.responseMessage = message;    
+        },
+        successUpdating: (state, action: PayloadAction<string>) => {
+            const updatingMessage = action.payload;
+            state.updatingStatus = LOADING_STATUSES.success;
+            state.responseMessage = updatingMessage;   
+        },
+        failedLoading: (state, action: PayloadAction<{errorCode: number, errorMessage: string}>) => {
+            const { errorCode, errorMessage } = action.payload;
+            state.loadingStatus = LOADING_STATUSES.failed;
+            state.responseMessage = errorMessage;
+        },
+        failedUpdating: (state, action: PayloadAction<{errorCode: number, errorMessage: string}>) => {
+            const { errorCode, errorMessage } = action.payload;            
+            state.updatingStatus = LOADING_STATUSES.failed;
+            state.responseMessage = errorMessage;
+        },
     }
 });
 
