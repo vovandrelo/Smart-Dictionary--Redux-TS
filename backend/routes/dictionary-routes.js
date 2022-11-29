@@ -8,7 +8,7 @@ const checkJWT = authMiddleware.checkJWT;
 dictionaryRouter.get("", checkJWT, dictionaryController.getWords);
 dictionaryRouter.post("/addWord", checkJWT, dictionaryController.addWord);
 dictionaryRouter.delete("/deleteWord", dictionaryController.deleteWord);
-dictionaryRouter.put("/editWord", dictionaryController.editWord);
+dictionaryRouter.put("/editWord/:id", checkJWT, dictionaryController.editWord);
 dictionaryRouter.post("/search/:value", dictionaryController.searchWord);
 
 export default dictionaryRouter;

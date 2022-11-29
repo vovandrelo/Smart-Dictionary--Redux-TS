@@ -1,6 +1,8 @@
 import InputPanel from "../../components/input-panel/input-panel";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { dictionaryActions } from "../../store/modules/dictionary";
+import { selectTranslationValue } from "../../store/modules/dictionary/selectors";
+
 
 interface PropsType {
     idxTranslation: number,
@@ -13,8 +15,10 @@ const NewWordTranslationsContainer = (props: PropsType) => {
 
     const dispatch = useAppDispatch();
 
+    const translationValue = useAppSelector(state => selectTranslationValue(state, idxTranslation));
+
     const getInputValue = (value: string) => {
-        dispatch(dictionaryActions.editTranslation({newValue: value, idx: idxTranslation, wordType: "added"}))
+        dispatch(dictionaryActions.editTranslation({ newValue: value, idx: idxTranslation }))
     }
 
     return (
@@ -22,6 +26,7 @@ const NewWordTranslationsContainer = (props: PropsType) => {
             placeholder={placeholder}
             externalStyles={externalStyles}
             getInputValue={getInputValue}
+            value={translationValue}
         />
     )
 }

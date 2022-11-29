@@ -1,7 +1,9 @@
 
 import InputPanel from "../../components/input-panel/input-panel";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { dictionaryActions } from "../../store/modules/dictionary";
+import { selectExampleValue } from "../../store/modules/dictionary/selectors";
+
 
 interface PropsType {
     idxExample: number,
@@ -14,8 +16,10 @@ const NewWordExamplesContainer = (props: PropsType) => {
 
     const dispatch = useAppDispatch();
 
+    const exampleValue = useAppSelector(state => selectExampleValue(state, idxExample));
+
     const getInputValue = (value: string) => {
-        dispatch(dictionaryActions.editExample({ newValue: value, idx: idxExample, wordType: "added" }))
+        dispatch(dictionaryActions.editExample({ newValue: value, idx: idxExample }))
     }
 
     return (
@@ -23,6 +27,7 @@ const NewWordExamplesContainer = (props: PropsType) => {
             placeholder={placeholder}
             externalStyles={externalStyles}
             getInputValue={getInputValue}
+            value={exampleValue}
         />
     )
 }

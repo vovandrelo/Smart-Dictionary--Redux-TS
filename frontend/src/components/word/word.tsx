@@ -15,11 +15,12 @@ interface PropsType {
     wordData: DictionaryWord,
     examplesIsVisible: boolean,
     showExample: (event: React.MouseEvent) => void,
+    editWord: () => void,
 }
 
 
 const Word = (props: PropsType) => {
-    const { wordData, examplesIsVisible, showExample } = props;
+    const { wordData, examplesIsVisible, showExample, editWord } = props;
 
 
     return (
@@ -28,9 +29,13 @@ const Word = (props: PropsType) => {
                 <div className={style["translate-word"]}>{wordData.value}</div>
                 <div className={style["translate-word"]}>{wordData.translations.join(", ")}</div>
                 <div className={style["icons"]}>
-                    <ArrowDownIcon externalStyles={classNames(style["arrow"], {[style["hidden"]]: !examplesIsVisible})} clickHandler={showExample}/>
+                    <ArrowDownIcon
+                        externalStyles={classNames(style["arrow"], {[style["hidden"]]: !examplesIsVisible})}
+                        clickHandler={showExample}/>
                     <LearnIcon externalStyles={style["learn"]}/>
-                    <EditIcon externalStyles={style["edit"]}/>
+                    <EditIcon
+                        externalStyles={style["edit"]}
+                        clickHandler={editWord}/>
                     <TrashIcon externalStyles={style["trash"]}/>
                     
                 </div>

@@ -6,13 +6,14 @@ import style from "./style-input-panel.module.sass";
 interface PropsType {
     externalStyles?: typeof style,
     placeholder?: string,
+    value?: string,
     getInputValue?: (value: string) => void,
 }
 
 const InputPanel = (props: PropsType) => {
-    const {externalStyles, placeholder, getInputValue} = props;
+    const {externalStyles, placeholder, getInputValue, value} = props;
 
-    const [inputValue, setInputValue] = useState("");
+    const [inputValue, setInputValue] = useState(value ? value : "");
 
     const onChangeHandler = (event: React.ChangeEvent) => {
         if (event && event.target instanceof HTMLInputElement) {

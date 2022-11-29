@@ -1,5 +1,3 @@
-
-
 import { AppThunk } from "../../..";
 import axios from "axios";
 import { dictionaryActions } from "..";
@@ -12,32 +10,34 @@ interface ResponseType {
     }
 }
 
-export const addWordThunk = (): AppThunk =>
+export const editWordThunk = (): AppThunk =>
     async (dispatch, getState) => {
         dispatch(dictionaryActions.startUpdating());
 
         try {
             const jwt = localStorage.getItem('token');
-            const newWordValue = getState().dictionary.modalData?.word.value;
-            const newWordTranslations = getState().dictionary.modalData?.word.translations.join(", ");
-            const newWordExamples = getState().dictionary.modalData?.word.examples.join(", ");
+            const editWordId = getState().dictionary.modalData?.wordId;
+            const editWordValue = getState().dictionary.modalData?.word.value;
+            const editWordTranslations = getState().dictionary.modalData?.word.translations.join(", ");
+            const editWordExamples = getState().dictionary.modalData?.word.examples.join(", ");
 
-            if (!newWordValue || !newWordTranslations || !newWordExamples) return;
+            if (!editWordValue || !editWordTranslations || !editWordExamples || !editWordId) return;
 
-            const newWord = {
-                value: newWordValue,
-                translations: newWordTranslations,
-                examples: newWordExamples,
+            const editWord = {
+                id: editWordId,
+                value: editWordValue,
+                translations: editWordTranslations,
+                examples: editWordExamples,
             }
 
-            const response: ResponseType = await axios.post("http://localhost:3001/dictionary/addWord/", newWord, {
+            const response: ResponseType = await axios.put(`http://localhost:3001/dictionary/editWord/${editWordId}`, editWord, {
                 headers: {
                     'authorization': jwt
                 },
             });
             const { data: { message, error }} = response;
 
-            dispatch(dictionaryActions.successUpdating(message))
+            dispatch(dictionaryActions.successUpdating(message));
         } catch (error: any) {
             const errorMessage: string = error.response.data.message;
             const errorCode: number = error.response.status;

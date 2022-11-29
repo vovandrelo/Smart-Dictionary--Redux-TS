@@ -11,6 +11,8 @@ const AddWordContainer = () => {
 
     const numTranslations = useAppSelector(selectNumTranslationsAddedWord);
     const numExamples = useAppSelector(selectNumExamplesAddedWord);
+
+    if (!numTranslations || !numExamples) return null;
     
     const saveWord = () => {
         dispatch(addWordThunk())
@@ -20,8 +22,8 @@ const AddWordContainer = () => {
         <ModalDictionary
             numTranslations={numTranslations}
             numExamples={numExamples}
-            addNewTranslation={() => dispatch(dictionaryActions.addNewTranslation({ wordType: "added" }))}
-            addNewExampl={() => dispatch(dictionaryActions.addNewExample({ wordType: "added" }))}
+            addNewTranslation={() => dispatch(dictionaryActions.addNewTranslation())}
+            addNewExampl={() => dispatch(dictionaryActions.addNewExample())}
             saveWord={saveWord}
         />
     )

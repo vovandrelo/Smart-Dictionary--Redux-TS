@@ -17,14 +17,22 @@ class DictionaryController {
         if (addWordResult.error) {
             return res.status(400).json(addWordResult);
         } else {
-            return res.status(200).json(addWordResult)
+            return res.status(200).json(addWordResult);
         }
     }
     async deleteWord(req, res) {
         
     }
     async editWord(req, res) {
-        
+        const { id, login, role } = req.user;
+        const word = req.body;
+        const editWordResult = await dictionaryModel.editWord(id, word);
+
+        if (editWordResult.error) {
+            return res.status(400).json(editWordResult);
+        } else {
+            return res.status(200).json(editWordResult)
+        }
     }
     async searchWord(req, res) {
         

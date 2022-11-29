@@ -4,6 +4,7 @@ import AuthPage from "./pages/auth-page";
 import Header from "./components/header/header";
 import ModalBg from "./components/modal-bg/modal-bg";
 import AddWordContainer from "./containers/add-word-conrainer";
+import EditWordContainer from "./containers/edit-word-container";
 
 const App = () => {
     return (
@@ -13,7 +14,7 @@ const App = () => {
                     <Route path="/auth" element={<AuthPage/>} />
                     <Route path="/dictionary" element={<DictionaryPage/>}>
                         <Route path="create" element={<ModalBg><AddWordContainer/></ModalBg>}/>
-                        {/* <Route path="edit/:id" element={<ModalBg><EditPostContainer/></ModalBg>}/> */}
+                        <Route path="edit/:id" element={<ModalBg><EditWordContainer/></ModalBg>}/>
                     </Route>
                 </Routes>
         </BrowserRouter>
