@@ -1,10 +1,11 @@
 import { useState } from "react";
-import Word from "../components/word/word";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { dictionaryActions } from "../store/modules/dictionary";
-import { selectDictionaryWordById } from "../store/modules/dictionary/selectors";
+import Word from "../../components/word/word";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { dictionaryActions } from "../../store/modules/dictionary";
+import { selectDictionaryWordById } from "../../store/modules/dictionary/selectors";
 import { useNavigate } from "react-router-dom";
-
+import { deleteWordThunk } from "../../store/modules/dictionary/middlewares/delete-word-thunk";
+  
 
 interface PropsType {
     wordId: number,
@@ -28,6 +29,10 @@ const WordContainer = (props: PropsType) => {
         dispatch(dictionaryActions.openModal({wordType: "editable", wordId}));
         navigate(`edit/${wordId}`);
     }
+
+    const deleteWord = () => {
+        dispatch(deleteWordThunk(wordId));
+    }
     
     return (
         <Word
@@ -35,6 +40,7 @@ const WordContainer = (props: PropsType) => {
             examplesIsVisible={examplesIsVisible}
             showExample={showExample}
             editWord={editWord}
+            deleteWord={deleteWord}
         />
     )
 }

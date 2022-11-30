@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import classNames from "classnames";
 import style from "./style-dictionary.module.sass";
 
-import WordContainer from "../../containers/word-container";
+import WordContainer from "../../containers/dictionary/word-container";
 
 import LearnIcon from "../icons/learn/learn";
 import EditIcon from "../icons/edit/edit";

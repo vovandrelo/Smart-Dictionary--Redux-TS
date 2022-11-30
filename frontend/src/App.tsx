@@ -3,8 +3,8 @@ import DictionaryPage from "./pages/dictionary-page";
 import AuthPage from "./pages/auth-page";
 import Header from "./components/header/header";
 import ModalBg from "./components/modal-bg/modal-bg";
-import AddWordContainer from "./containers/add-word-conrainer";
-import EditWordContainer from "./containers/edit-word-container";
+import AddWordContainer from "./containers/dictionary/dictionary-modal-containers/add-word-conrainer";
+import EditWordContainer from "./containers/dictionary/dictionary-modal-containers/edit-word-container";
 
 const App = () => {
     return (

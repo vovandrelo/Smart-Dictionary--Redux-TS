@@ -40,6 +40,23 @@ class DictionaryModel {
             return { error: true, message: "Something went wrong..." }
         }
     }
+    async deleteWord(userId, wordId) {
+        try {
+            const queryText = "DELETE FROM user_words WHERE id=$1 AND id_user=$2";
+            const queryParams = [wordId, userId];
+            const deleteWordResult = (await pool.query(queryText, queryParams)).rowCount;
+
+            const wordIsDelete = deleteWordResult > 0 ? true : false;
+
+            if (wordIsDelete) {
+                return { error: false, message: "The word was successfully deleted" }
+            } else {
+                return { error: true, message: "Something went wrong..." }
+            }
+        } catch (error) {
+            return { error: true, message: "Something went wrong..." }
+        }
+    }
 }
 
 export default new DictionaryModel();

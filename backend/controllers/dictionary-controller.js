@@ -21,7 +21,15 @@ class DictionaryController {
         }
     }
     async deleteWord(req, res) {
-        
+        const { id, login, role } = req.user;
+        const wordId = req.params.id;
+        const deleteWordResult = await dictionaryModel.deleteWord(id, wordId);
+
+        if (deleteWordResult.error) {
+            return res.status(400).json(deleteWordResult);
+        } else {
+            return res.status(200).json(deleteWordResult)
+        }
     }
     async editWord(req, res) {
         const { id, login, role } = req.user;

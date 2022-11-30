@@ -1,12 +1,12 @@
 
 import style from "./style-modal-dictionary.module.sass";
-import NewWordTranslationsContainer from "../../containers/dictionary-input-containers/new-word-translations-container";
-import NewWordContainer from "../../containers/dictionary-input-containers/new-word-container";
+import NewWordTranslationsContainer from "../../containers/dictionary/dictionary-input-containers/new-word-translations-container";
+import NewWordContainer from "../../containers/dictionary/dictionary-input-containers/new-word-container";
 import InputPanel from "../input-panel/input-panel";
 import Notify from "../notify/notify";
 import Button from "../button/button";
 import Plus from "../icons/plus/plus";
-import NewWordExamplesContainer from "../../containers/dictionary-input-containers/new-word-examples-container";
+import NewWordExamplesContainer from "../../containers/dictionary/dictionary-input-containers/new-word-examples-container";
 
 
 interface PropsType {

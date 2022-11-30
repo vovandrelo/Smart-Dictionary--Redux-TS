@@ -16,11 +16,12 @@ interface PropsType {
     examplesIsVisible: boolean,
     showExample: (event: React.MouseEvent) => void,
     editWord: () => void,
+    deleteWord: () => void,
 }
 
 
 const Word = (props: PropsType) => {
-    const { wordData, examplesIsVisible, showExample, editWord } = props;
+    const { wordData, examplesIsVisible, showExample, editWord, deleteWord } = props;
 
 
     return (
@@ -36,7 +37,9 @@ const Word = (props: PropsType) => {
                     <EditIcon
                         externalStyles={style["edit"]}
                         clickHandler={editWord}/>
-                    <TrashIcon externalStyles={style["trash"]}/>
+                    <TrashIcon
+                        externalStyles={style["trash"]}
+                        clickHandler={deleteWord}/>
                     
                 </div>
             </div>

@@ -1,8 +1,8 @@
 
-import InputPanel from "../../components/input-panel/input-panel";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { dictionaryActions } from "../../store/modules/dictionary";
-import { selectExampleValue } from "../../store/modules/dictionary/selectors";
+import InputPanel from "../../../components/input-panel/input-panel";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { dictionaryActions } from "../../../store/modules/dictionary";
+import { selectExampleValue } from "../../../store/modules/dictionary/selectors";
 
 
 interface PropsType {

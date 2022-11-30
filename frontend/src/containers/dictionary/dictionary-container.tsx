@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import Dictionary from "../components/dictionary/dictionary";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { getWordsThunk } from "../store/modules/dictionary/middlewares/get-words-thunk";
-import { selectDictionaryLoadingStatus, selectDictionaryResponseMessage, selectDictionaryWordsIds } from "../store/modules/dictionary/selectors";
-import { selectLoginStatus } from "../store/modules/login/selectos";
+import Dictionary from "../../components/dictionary/dictionary";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { getWordsThunk } from "../../store/modules/dictionary/middlewares/get-words-thunk";
+import { selectDictionaryLoadingStatus, selectDictionaryResponseMessage, selectDictionaryWordsIds } from "../../store/modules/dictionary/selectors";
+import { selectLoginStatus } from "../../store/modules/login/selectos";
 import { useNavigate } from "react-router-dom";
 
 

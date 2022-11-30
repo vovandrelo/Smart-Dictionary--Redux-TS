@@ -10,26 +10,12 @@ interface ResponseType {
     }
 }
 
-export const deleteWordThunk = (): AppThunk =>
+export const deleteWordThunk = (deleteWordId: number): AppThunk =>
     async (dispatch, getState) => {
         dispatch(dictionaryActions.startUpdating());
 
         try {
             const jwt = localStorage.getItem('token');
-            const deleteWordId = "";
-            //const editWordId = getState().dictionary.modalData?.wordId;
-            //const editWordValue = getState().dictionary.modalData?.word.value;
-            //const editWordTranslations = getState().dictionary.modalData?.word.translations.join(", ");
-            //const editWordExamples = getState().dictionary.modalData?.word.examples.join(", ");
-
-            //if (!editWordValue || !editWordTranslations || !editWordExamples || !editWordId) return;
-
-            /* const editWord = {
-                id: editWordId,
-                value: editWordValue,
-                translations: editWordTranslations,
-                examples: editWordExamples,
-            } */
 
             const response: ResponseType = await axios.delete(`http://localhost:3001/dictionary/deleteWord/${deleteWordId}`, {
                 headers: {
