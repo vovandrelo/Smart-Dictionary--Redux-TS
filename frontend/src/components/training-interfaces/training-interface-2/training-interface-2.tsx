@@ -1,8 +1,8 @@
 
-import style from "./style.module.sass";
+import style from "./training-interface-2.module.sass";
 import Button from "../../button/button";
 
-const TrainingSecondStage = () => {
+const SecondTrainingInterface= () => {
     return (
         <div className={style.root}>
             <span className={style.value}>Implement</span>
@@ -17,4 +17,4 @@ const TrainingSecondStage = () => {
     )
 }
 
-export default TrainingSecondStage;
+export default SecondTrainingInterface;

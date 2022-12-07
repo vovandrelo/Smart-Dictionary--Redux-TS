@@ -12,12 +12,12 @@ const App = () => {
         <BrowserRouter>
                 <Header/>
                 <Routes>
-                    <Route path="/" element={<LearnPage/>} />
-                    <Route path="/auth" element={<AuthPage/>} />
+                    <Route path="/learn" element={<LearnPage/>} />
                     <Route path="/dictionary" element={<DictionaryPage/>}>
                         <Route path="create" element={<ModalBg><AddWordContainer/></ModalBg>}/>
                         <Route path="edit/:id" element={<ModalBg><EditWordContainer/></ModalBg>}/>
                     </Route>
+                    <Route path="/auth" element={<AuthPage/>} />
                 </Routes>
         </BrowserRouter>
    )

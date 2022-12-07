@@ -1,7 +1,7 @@
-import style from "./style.module.sass";
+import style from "./training-interface-3.module.sass";
 import Button from "../../button/button";
 
-const TrainingThirdStage = () => {
+const ThirdTrainingInterface = () => {
     return (
         <div className={style.root}>
             <span className={style.translations}>Осуществлять</span>
@@ -25,4 +25,4 @@ const TrainingThirdStage = () => {
     )
 }
 
-export default TrainingThirdStage;
+export default ThirdTrainingInterface;

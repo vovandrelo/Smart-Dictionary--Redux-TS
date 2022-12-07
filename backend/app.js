@@ -8,6 +8,7 @@ import { PORT } from './config.js';
 //<==================================================== ИМПОРТ РОУТОВ ===================================================>\\
 import authRouter from './routes/auth-routes.js';
 import dictionaryRouter from './routes/dictionary-routes.js';
+import learnRouter from './routes/learn-routes.js';
 
 //<=============================================== КОНФИГУРАЦИЯ ПРИЛОЖЕНИЯ ==============================================>\\
 const app = express();                                          // Создание объекта Node-приложения
@@ -28,14 +29,9 @@ app.use(cors(corsOptions))                                      // Отмена 
 
 app.use("/auth", authRouter);
 app.use("/dictionary", dictionaryRouter);
-
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
-
-app.get('*', (req, res) => {
-    res.status(404).send('wtf???');
-});
+app.use("/learn", learnRouter);
+app.get('/', (req, res) => res.send('Hello World!'));
+app.get('*', (req, res) => res.status(404).send('wtf???'));
 
 //<==================================================== ЗАПУСК СЕРВЕРА ==================================================>\\
 app.listen(PORT, () => {

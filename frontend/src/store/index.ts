@@ -5,6 +5,7 @@ import { loginReducer } from './modules/login';
 import { registrReducer } from './modules/registr';
 import { dictionaryReducer } from './modules/dictionary';
 import { AnyAction } from 'redux';
+import { learnReducer } from './modules/learn';
 
 
 //<=========================================== ФОРМИРОВАНИЕ НЕОБХОДИМЫХ ТИПОВ ===========================================>\\
@@ -24,6 +25,7 @@ const rootReducer = {
     login: loginReducer,
     registr: registrReducer,
     dictionary: dictionaryReducer,
+    learn: learnReducer,
 }
 
 //<================================================ КОНФИГУРАЦИЯ STOR-А =================================================>\\

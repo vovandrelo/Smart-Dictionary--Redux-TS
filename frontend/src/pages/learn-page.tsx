@@ -1,12 +1,16 @@
 import Container from "../components/container/container";
-import TrainingFirstStage from "../components/test-learn/training-1/training-1";
-import TrainingSecondStage from "../components/test-learn/training-2/training-2";
-import TrainingThirdStage from "../components/test-learn/training-3/training-3";
-import TrainingFourthStage from "../components/test-learn/training-4/training-4";
+import TrainingFirstStage from "../components/training-interfaces/training-interface-1/training-interface-1";
+import TrainingSecondStage from "../components/training-interfaces/training-interface-2/training-interface-2";
+import TrainingThirdStage from "../components/training-interfaces/training-interface-3/training-interface-3";
+import TrainingFourthStage from "../components/training-interfaces/training-interface-4/training-interface-4";
+import LearnContainer from "../containers/learn/learn-container";
+import FirstTrainingContainer from "../containers/learn/training-interfaces-containers/training-1-container";
+import TrainingSliderContainer from "../containers/learn/training-slider-container";
 
 const LearnPage = () => {
     return (
         <Container>
+            <LearnContainer/>
             {/* <TrainingFirstStage/> */}
             {/* <TrainingSecondStage/> */}
             {/* <TrainingThirdStage/> */}

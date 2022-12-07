@@ -1,8 +1,8 @@
 import InputPanel from "../../input-panel/input-panel";
-import style from "./style.module.sass";
+import style from "./training-interface-4.module.sass";
 import Button from "../../button/button";
 
-const TrainingFourthStage = () => {
+const FourthTrainingInterface = () => {
 
     return (
         <div className={style.root}>
@@ -15,4 +15,4 @@ const TrainingFourthStage = () => {
     )
 }
 
-export default TrainingFourthStage;
+export default FourthTrainingInterface;
