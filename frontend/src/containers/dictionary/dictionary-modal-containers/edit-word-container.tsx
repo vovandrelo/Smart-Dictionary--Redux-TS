@@ -20,13 +20,13 @@ const EditWordContainer = () => {
     }
 
     return (
-        <ModalDictionary
+        {/* <ModalDictionary
             numTranslations={numTranslations}
             numExamples={numExamples}
             addNewTranslation={() => dispatch(dictionaryActions.addNewTranslation())}
             addNewExampl={() => dispatch(dictionaryActions.addNewExample())}
             saveWord={saveWord}
-        />
+        /> */}
     )
 }
 

@@ -7,9 +7,14 @@ import Notify from "../notify/notify";
 import Button from "../button/button";
 import Plus from "../icons/plus/plus";
 import NewWordExamplesContainer from "../../containers/dictionary/dictionary-input-containers/new-word-examples-container";
+import classNames from "classnames";
 
 
 interface PropsType {
+    wordValueIsError: boolean,
+    wordTranslationsIsError: boolean,
+    setWordValueIsError: (wordValueIsError: boolean) => void,
+    setWordTranslationsIsError: (wordValueIsError: boolean) => void,
     numTranslations: number,
     numExamples: number,
     addNewTranslation: () => void,
@@ -18,7 +23,7 @@ interface PropsType {
 }
 
 const ModalDictionary = (props: PropsType) => {
-    const { numTranslations, numExamples, addNewTranslation, addNewExampl, saveWord } = props;
+    const { numTranslations, numExamples, addNewTranslation, addNewExampl, wordValueIsError, saveWord, setWordValueIsError } = props;
 
     const createTranslInputs = () => {
         const inputs: React.ReactNode[] = [];
@@ -27,8 +32,8 @@ const ModalDictionary = (props: PropsType) => {
                 <NewWordTranslationsContainer
                     key={i}
                     idxTranslation={i}
-                    placeholder="Выберите или введите перевод"
                     externalStyles={style["input"]}
+                    /* wordValueIsError={wordValueIsError} */
                 />
             );
         }
@@ -42,7 +47,6 @@ const ModalDictionary = (props: PropsType) => {
                 <NewWordExamplesContainer
                     key={i}
                     idxExample={i}
-                    placeholder="Введите пример использования"
                     externalStyles={style["input"]}
                 />
             );
@@ -55,10 +59,11 @@ const ModalDictionary = (props: PropsType) => {
     return (
         <div className={style["root"]}>
             <div className={style["new-word-block"]}>
-                <Notify text="Введите английское слово" externalStyles={style["title"]}/>
+                <Notify text="Добавление нового слова" externalStyles={style["title"]}/>
                 <NewWordContainer
-                    placeholder="Введите английское слово"
-                    externalStyles={style["input"]}
+                    externalStyles={classNames(style["input"], { [style["error"]]: wordValueIsError })}
+                    wordValueIsError={wordValueIsError}
+                    setWordValueIsError={setWordValueIsError}
                 />
             </div>
 

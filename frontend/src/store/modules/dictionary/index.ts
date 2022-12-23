@@ -81,7 +81,6 @@ export const DictionarySlice = createSlice({
         addNewTranslation: (state) => {
             if (state.modalData) state.modalData.word.translations.push("");
         },
-
         addNewExample: (state) => {
             if (state.modalData) state.modalData.word.examples.push("");
         },

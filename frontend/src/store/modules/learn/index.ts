@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { LOADING_STATUSES } from "../../constants/loading-statuses";
 import { DictionaryWord } from "../dictionary/index";
 
-interface DictionaryState {
+interface LearnState {
     entities: {
         [propName: number]: DictionaryWord,
     },
@@ -15,7 +15,7 @@ interface DictionaryState {
     trainingStage: number,
 }
 
-const initialState: DictionaryState = {
+const initialState: LearnState = {
     entities: {},
     ids: [],
     value: [],
@@ -32,6 +32,9 @@ export const LearnSlice = createSlice({
     reducers: {
         startLoading: (state) => {
             state.loadingStatus = LOADING_STATUSES.inProgress;
+        },
+        startUpdating: (state) => {
+            state.updatingStatus = LOADING_STATUSES.inProgress;
         },
         successLoading: (state, action: PayloadAction<{ message: string, error: boolean, words: DictionaryWord[] }>) => {
             const { message, error, words } = action.payload;
@@ -51,6 +54,9 @@ export const LearnSlice = createSlice({
             const { errorCode, errorMessage } = action.payload;
             state.loadingStatus = LOADING_STATUSES.failed;
             state.responseMessage = errorMessage;
+        },
+        failedUpdating: (state, action: PayloadAction<{errorCode: number, errorMessage: string}>) => {
+
         },
         trainingStageUp: (state) => {
             state.trainingStage++;

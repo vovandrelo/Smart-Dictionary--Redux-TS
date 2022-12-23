@@ -1,30 +1,40 @@
+import classNames from "classnames";
+import { useState } from "react";
 import InputPanel from "../../../components/input-panel/input-panel";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { dictionaryActions } from "../../../store/modules/dictionary";
 import { selectWordValue } from "../../../store/modules/dictionary/selectors";
+import Error from "../../../components/icons/error/error";
 
 interface PropsType {
+    wordValueIsError: boolean,
+    setWordValueIsError: (wordValueIsError: boolean) => void,
     externalStyles?: any,
-    placeholder?: string,
 }
 
 const NewWordContainer = (props: PropsType) => {
-    const { externalStyles, placeholder } = props;
+    const { wordValueIsError, setWordValueIsError, externalStyles } = props;
 
     const dispatch = useAppDispatch();
 
     const wordValue = useAppSelector(state => selectWordValue(state));
 
-    const getInputValue = (value: string) => {
+    const [wordValueIsEmpty, setWordValueIsEmpty] = useState<boolean>(true);
+
+    const setWordValue = (value: string) => {
+        setWordValueIsError(false);
         dispatch(dictionaryActions.editWordValue({ newValue: value }))
     }
 
+    if (wordValue  === undefined) return null;
+
     return (
         <InputPanel
-            placeholder={placeholder}
+            inputValue={wordValue}
+            setInputValue={setWordValue}
+            placeholder="Введите английское слово"
             externalStyles={externalStyles}
-            getInputValue={getInputValue}
-            value={wordValue}
+            icon={wordValueIsError ? <Error/> : null}
         />
     )
 }

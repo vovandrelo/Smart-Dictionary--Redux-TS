@@ -8,26 +8,27 @@ import { selectExampleValue } from "../../../store/modules/dictionary/selectors"
 interface PropsType {
     idxExample: number,
     externalStyles?: any,
-    placeholder?: string,
 }
 
 const NewWordExamplesContainer = (props: PropsType) => {
-    const { idxExample, externalStyles, placeholder } = props;
+    const { idxExample, externalStyles } = props;
 
     const dispatch = useAppDispatch();
 
     const exampleValue = useAppSelector(state => selectExampleValue(state, idxExample));
 
-    const getInputValue = (value: string) => {
+    const setExampleValue = (value: string) => {
         dispatch(dictionaryActions.editExample({ newValue: value, idx: idxExample }))
     }
 
+    if (exampleValue === undefined) return null;
+
     return (
         <InputPanel
-            placeholder={placeholder}
+            inputValue={exampleValue}
+            setInputValue={setExampleValue}
             externalStyles={externalStyles}
-            getInputValue={getInputValue}
-            value={exampleValue}
+            placeholder="Введите примеры использования"
         />
     )
 }

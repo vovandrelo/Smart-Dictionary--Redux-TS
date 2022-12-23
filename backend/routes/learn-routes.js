@@ -6,5 +6,6 @@ const learnRouter = express.Router();
 const checkJWT = authMiddleware.checkJWT;
 
 learnRouter.get("/get-random-words", checkJWT, learnController.getRandomWords);
+learnRouter.put("/update-status-words", checkJWT, learnController.updateStatusWords);
 
 export default learnRouter;

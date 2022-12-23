@@ -14,6 +14,17 @@ class LearnModel {
             return { error: true, message: "Something went wrong..." }
         }
     }
+    async updateStatusWords(userId) {
+        try {
+            const queryText = 'SELECT * FROM USER_WORDS WHERE id_user=$1 AND stage=$2 ORDER BY date_added ASC LIMIT $3';
+            const queryParams = [userId, 0, 5];
+            const words = (await pool.query(queryText, queryParams)).rows;
+            return { error: false, message: "The words were successfully received", words }
+
+        } catch (error) {
+            return { error: true, message: "Something went wrong..." }
+        }
+    }
     /* async addNewWord(userId, wordData) {
         try {
             const queryText = 'INSERT INTO USER_WORDS(id_user, translations, value, examples, stage, next_repeat, date_added) VALUES ($1, $2, $3, $4, $5, $6, $7)';

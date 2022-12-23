@@ -17,8 +17,6 @@ const ModalBg = (props: PropsType) => {
     const dispatch = useAppDispatch();
     const { children } = props;
 
-    // dictionaryActions
-
     useEffect(() => {
         setIsOpen(true);
     }, []);

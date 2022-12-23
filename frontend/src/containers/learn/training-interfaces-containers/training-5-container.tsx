@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import SecondTrainingInterface from "../../../components/training-interfaces/training-interface-2/training-interface-2";
 import { useAppSelector } from "../../../store/hooks";
-import { selectLearnModuleTranslations, selectLearnModuleWordTranslations, selectLearnModuleWordValue } from "../../../store/modules/learn/selectors";
+import { selectLearnModuleTranslations, selectLearnModuleValues, selectLearnModuleWordTranslations, selectLearnModuleWordValue } from "../../../store/modules/learn/selectors";
 
 interface PropsType {
     wordId: number,
@@ -10,36 +10,36 @@ interface PropsType {
     slideIdx: number,
 }
 
-const SecondTrainingContainer = (props: PropsType) => {
+const FifthTrainingContainer = (props: PropsType) => {
     const { wordId, nextSlide, activeSlideIdx, slideIdx } = props;
 
-    const [valueIsSelect, setValueSelect] = useState<boolean>(false);
-    const [selectedTranslations, setSelectedTranslations] = useState<string | null>(null);
+    const [translationIsSelect, setTranslationSelect] = useState<boolean>(false);
+    const [selectedValues, setSelectedValues] = useState<string | null>(null);
 
-    const allTranslations = useAppSelector(selectLearnModuleTranslations);
-    const wordValue = useAppSelector(state => selectLearnModuleWordValue(state, wordId));
+    const allValues = useAppSelector(selectLearnModuleValues);
     const wordTranslations = useAppSelector(state => selectLearnModuleWordTranslations(state, wordId));
+    const wordValue = useAppSelector(state => selectLearnModuleWordValue(state, wordId));
 
     const slideIsActive = activeSlideIdx === slideIdx;
 
-    const optimazeAllTranslations = useMemo(() => {
-        return [...allTranslations].map(translation => translation.join(", ")).sort(() => Math.random() - 0.5);
-    }, [allTranslations])
+    const optimazeAllValues = useMemo(() => {
+        return [...allValues].sort(() => Math.random() - 0.5)
+    }, [])
     
     const optimazeWordTranslations = useMemo(() => {
         return [...wordTranslations].sort(() => Math.random() - 0.5).join(", ");
     }, [wordTranslations])
 
-    const selectHandler = (selectWordTranslations: string) => {
-        if (valueIsSelect) return;
-        setValueSelect(true);
-        setSelectedTranslations(selectWordTranslations);
+    const selectHandler = (selectWordValue: string) => {
+        if (translationIsSelect) return;
+        setTranslationSelect(true);
+        setSelectedValues(selectWordValue);
     }
 
     const openNextSlide = () => {
-        if (valueIsSelect) {
+        if (translationIsSelect) {
             nextSlide();
-            if (selectedTranslations === optimazeWordTranslations) {
+            if (wordValue === selectedValues) {
                 console.log("Правильно");
             } else {
                 console.log("Не правильно!");
@@ -52,33 +52,33 @@ const SecondTrainingContainer = (props: PropsType) => {
             if (event.code === "Enter") {
                 openNextSlide();
             } else if (event.code === "Digit1") {
-                selectHandler(optimazeAllTranslations[0]);
+                selectHandler(optimazeAllValues[0]);
             } else if (event.code === "Digit2") {
-                selectHandler(optimazeAllTranslations[1]);
+                selectHandler(optimazeAllValues[1]);
             } else if (event.code === "Digit3") {
-                selectHandler(optimazeAllTranslations[2]);
+                selectHandler(optimazeAllValues[2]);
             } else if (event.code === "Digit4") {
-                selectHandler(optimazeAllTranslations[3]);
+                selectHandler(optimazeAllValues[3]);
             } else if (event.code === "Digit5") {
-                selectHandler(optimazeAllTranslations[4]);
+                selectHandler(optimazeAllValues[4]);
             }
         };
 
         if (slideIsActive) document.addEventListener("keydown", keyDownHandler);
         return () => document.removeEventListener("keydown", keyDownHandler)
-    }, [valueIsSelect, activeSlideIdx])
+    }, [translationIsSelect, activeSlideIdx])
     
     return (
         <SecondTrainingInterface
-            mainValue={wordValue}
-            answerVariants={optimazeAllTranslations}
-            correctAnswerVariants={optimazeWordTranslations}
-            selectedAnswerVariants={selectedTranslations}
-            answerVariantIsSelected={valueIsSelect}
+            mainValue={optimazeWordTranslations}
+            answerVariants={optimazeAllValues}
+            correctAnswerVariants={wordValue}
+            selectedAnswerVariants={selectedValues}
+            answerVariantIsSelected={translationIsSelect}
             selectHandler={selectHandler}
             openNextSlide={openNextSlide}
         />
     )
 }
 
-export default SecondTrainingContainer;
+export default FifthTrainingContainer;

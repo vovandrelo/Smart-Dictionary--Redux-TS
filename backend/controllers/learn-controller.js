@@ -12,6 +12,18 @@ class LearnController {
             return res.status(200).json(getWordsResult)
         }
     }
+
+    async updateStatusWords(req, res) {
+        const { id, login, role } = req.user;
+
+        const updateStatusWordsResult = await learnModel.updateStatusWords(id);
+
+        if (getWordsResult.error) {
+            return res.status(400).json(getWordsResult);
+        } else {
+            return res.status(200).json(getWordsResult)
+        }
+    }
 }
 
 export default new LearnController();

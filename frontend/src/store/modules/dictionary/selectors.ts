@@ -12,3 +12,11 @@ export const selectNumTranslationsAddedWord = (state: RootState) => selectDictio
 export const selectWordValue = (state: RootState) => selectDictionaryModuleState(state).modalData?.word.value;
 export const selectExampleValue = (state: RootState, exampleIdx: number) => selectDictionaryModuleState(state).modalData?.word.examples[exampleIdx];
 export const selectTranslationValue = (state: RootState, translationIdx: number) => selectDictionaryModuleState(state).modalData?.word.translations[translationIdx];
+
+export const selectEmptyTranslationIdx = (state: RootState) => selectDictionaryModuleState(state).modalData?.word.translations.indexOf("");
+export const selectEmptyExampleIdx = (state: RootState) => selectDictionaryModuleState(state).modalData?.word.examples.indexOf("");
+
+
+
+
+
