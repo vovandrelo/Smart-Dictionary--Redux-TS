@@ -8,7 +8,9 @@ import ArrowDownIcon from "../icons/arrow-down/arrow-down";
 import { DictionaryWord } from "../../store/modules/dictionary";
 
 import style from "./word-style.module.sass";
-
+import { LOADING_STATUSES } from "../../store/constants/loading-statuses";
+import Spinner from "../icons/spinner/spinner";
+import Error from "../icons/error/error";
 
 
 interface PropsType {
@@ -17,11 +19,12 @@ interface PropsType {
     showExample: (event: React.MouseEvent) => void,
     editWord: () => void,
     deleteWord: () => void,
+    deletingStatus?: LOADING_STATUSES,
 }
 
 
 const Word = (props: PropsType) => {
-    const { wordData, examplesIsVisible, showExample, editWord, deleteWord } = props;
+    const { wordData, examplesIsVisible, showExample, editWord, deleteWord, deletingStatus } = props;
 
 
     return (
@@ -32,14 +35,17 @@ const Word = (props: PropsType) => {
                 <div className={style["icons"]}>
                     <ArrowDownIcon
                         externalStyles={classNames(style["arrow"], {[style["hidden"]]: !examplesIsVisible})}
-                        clickHandler={showExample}/>
+                        clickHandler={showExample}
+                    />
                     <LearnIcon externalStyles={style["learn"]}/>
                     <EditIcon
                         externalStyles={style["edit"]}
-                        clickHandler={editWord}/>
-                    <TrashIcon
-                        externalStyles={style["trash"]}
-                        clickHandler={deleteWord}/>
+                        clickHandler={editWord}
+                    />
+                    {!deletingStatus ? <TrashIcon externalStyles={style["trash"]} clickHandler={deleteWord}/> : null}
+                    {deletingStatus === LOADING_STATUSES.inProgress ? <Spinner externalStyles={style["spinner"]}/> : null}
+                    {deletingStatus === LOADING_STATUSES.failed ? <Error externalStyles={style["error"]}/> : null}
+                    
                     
                 </div>
             </div>

@@ -3,7 +3,7 @@ import { useState } from "react";
 import InputPanel from "../../../components/input-panel/input-panel";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { dictionaryActions } from "../../../store/modules/dictionary";
-import { selectWordValue } from "../../../store/modules/dictionary/selectors";
+import { selectModalValue } from "../../../store/modules/dictionary/selectors";
 import Error from "../../../components/icons/error/error";
 
 interface PropsType {
@@ -17,10 +17,7 @@ const NewWordContainer = (props: PropsType) => {
 
     const dispatch = useAppDispatch();
 
-    const wordValue = useAppSelector(state => selectWordValue(state));
-
-    const [wordValueIsEmpty, setWordValueIsEmpty] = useState<boolean>(true);
-
+    const wordValue = useAppSelector(state => selectModalValue(state));
     const setWordValue = (value: string) => {
         setWordValueIsError(false);
         dispatch(dictionaryActions.editWordValue({ newValue: value }))

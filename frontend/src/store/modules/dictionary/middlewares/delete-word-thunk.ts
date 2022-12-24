@@ -12,7 +12,7 @@ interface ResponseType {
 
 export const deleteWordThunk = (deleteWordId: number): AppThunk =>
     async (dispatch, getState) => {
-        dispatch(dictionaryActions.startUpdating());
+        dispatch(dictionaryActions.startDeleting({ deleteWordId }));
 
         try {
             const jwt = localStorage.getItem('token');
@@ -25,13 +25,13 @@ export const deleteWordThunk = (deleteWordId: number): AppThunk =>
 
             const { data: { message, error }} = response;
 
-            dispatch(dictionaryActions.successUpdating(message));
+            dispatch(dictionaryActions.successDeleting({message, deleteWordId}));
         } catch (error: any) {
             const errorMessage: string = error.response.data.message;
             const errorCode: number = error.response.status;
             if (errorCode === 403) {
                 dispatch(loginActions.logOut());
             }
-            dispatch(dictionaryActions.failedUpdating({errorMessage, errorCode}));
+            dispatch(dictionaryActions.failedDeleting({deleteWordId, errorMessage, errorCode}));
         }
     };

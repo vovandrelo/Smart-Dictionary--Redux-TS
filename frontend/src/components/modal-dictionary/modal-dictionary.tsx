@@ -8,32 +8,48 @@ import Button from "../button/button";
 import Plus from "../icons/plus/plus";
 import NewWordExamplesContainer from "../../containers/dictionary/dictionary-input-containers/new-word-examples-container";
 import classNames from "classnames";
-
+import Spinner from "../icons/spinner/spinner";
+import { LOADING_STATUSES } from "../../store/constants/loading-statuses";
+import Accept from "../icons/accept/accept";
+import Error from "../icons/error/error";
 
 interface PropsType {
+    savingStatus: LOADING_STATUSES,
     wordValueIsError: boolean,
     wordTranslationsIsError: boolean,
     setWordValueIsError: (wordValueIsError: boolean) => void,
     setWordTranslationsIsError: (wordValueIsError: boolean) => void,
-    numTranslations: number,
-    numExamples: number,
+    numWordTranslations: number,
+    numWordExamples: number,
     addNewTranslation: () => void,
     addNewExampl: () => void,
     saveWord: () => void,
 }
 
 const ModalDictionary = (props: PropsType) => {
-    const { numTranslations, numExamples, addNewTranslation, addNewExampl, wordValueIsError, saveWord, setWordValueIsError } = props;
+    const {
+        savingStatus,
+        wordValueIsError,
+        wordTranslationsIsError,
+        setWordValueIsError,
+        setWordTranslationsIsError,
+        numWordTranslations,
+        numWordExamples,
+        addNewTranslation,
+        addNewExampl,
+        saveWord,
+    } = props;
 
     const createTranslInputs = () => {
         const inputs: React.ReactNode[] = [];
-        for (let i = 0; i < numTranslations; i++) {
+        for (let i = 0; i < numWordTranslations; i++) {
             inputs.push(
                 <NewWordTranslationsContainer
                     key={i}
                     idxTranslation={i}
-                    externalStyles={style["input"]}
-                    /* wordValueIsError={wordValueIsError} */
+                    externalStyles={classNames(style["input"], { [style["error"]]: wordTranslationsIsError })}
+                    wordTranslationsIsError={wordTranslationsIsError}
+                    setWordTranslationsIsError={setWordTranslationsIsError}
                 />
             );
         }
@@ -42,7 +58,7 @@ const ModalDictionary = (props: PropsType) => {
 
     const createExampslInputs = () => {
         const inputs: React.ReactNode[] = [];
-        for (let i = 0; i < numExamples; i++) {
+        for (let i = 0; i < numWordExamples; i++) {
             inputs.push(
                 <NewWordExamplesContainer
                     key={i}
@@ -84,6 +100,16 @@ const ModalDictionary = (props: PropsType) => {
             </div>
             
             <Button text="Сохранить" clickHandler={saveWord} externalStyles={style.button}/>
+
+            {
+                savingStatus === LOADING_STATUSES.notStarted
+                ? null
+                : <div className={style["blocking"]}>
+                    {savingStatus === LOADING_STATUSES.inProgress ? <Spinner externalStyles={style["icon"]}/> : null}
+                    {savingStatus === LOADING_STATUSES.success ? <Accept externalStyles={style["icon"]}/> : null}
+                    {savingStatus === LOADING_STATUSES.failed ? <Error externalStyles={style["icon"]}/> : null}
+                </div>
+            }
         </div>
     )
 }

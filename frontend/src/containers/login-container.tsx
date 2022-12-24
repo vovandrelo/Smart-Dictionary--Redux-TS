@@ -72,7 +72,7 @@ const LoginContainer = (props: PropsType) => {
         )  
     } else if (loadingStatus === LOADING_STATUSES.success) {
         setTimeout(() => {
-            navigate("/");
+            navigate("/dictionary");
         }, 1000);
         return (
             <div className={externalStyles["accept-block"]}>

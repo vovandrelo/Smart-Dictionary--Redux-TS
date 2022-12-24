@@ -3,8 +3,7 @@ import DictionaryPage from "./pages/dictionary-page";
 import AuthPage from "./pages/auth-page";
 import Header from "./components/header/header";
 import ModalBg from "./components/modal-bg/modal-bg";
-import AddWordContainer from "./containers/dictionary/dictionary-modal-containers/add-word-conrainer";
-import EditWordContainer from "./containers/dictionary/dictionary-modal-containers/edit-word-container";
+import ModalDictionaryContainer from "./containers/dictionary/modal-dictionary-container";
 import LearnPage from "./pages/learn-page";
 
 const App = () => {
@@ -14,8 +13,8 @@ const App = () => {
                 <Routes>
                     <Route path="/learn" element={<LearnPage/>} />
                     <Route path="/dictionary" element={<DictionaryPage/>}>
-                        <Route path="create" element={<ModalBg><AddWordContainer/></ModalBg>}/>
-                        <Route path="edit/:id" element={<ModalBg>{/* <EditWordContainer/> */}</ModalBg>}/>
+                        <Route path="create" element={<ModalBg><ModalDictionaryContainer/></ModalBg>}/>
+                        <Route path="edit/:id" element={<ModalBg><ModalDictionaryContainer/></ModalBg>}/>
                     </Route>
                     <Route path="/auth" element={<AuthPage/>} />
                 </Routes>

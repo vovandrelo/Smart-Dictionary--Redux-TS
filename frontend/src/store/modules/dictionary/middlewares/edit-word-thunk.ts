@@ -12,7 +12,7 @@ interface ResponseType {
 
 export const editWordThunk = (): AppThunk =>
     async (dispatch, getState) => {
-        dispatch(dictionaryActions.startUpdating());
+        dispatch(dictionaryActions.startSaving());
 
         try {
             const jwt = localStorage.getItem('token');
@@ -21,7 +21,7 @@ export const editWordThunk = (): AppThunk =>
             const editWordTranslations = getState().dictionary.modalData?.word.translations.join(", ");
             const editWordExamples = getState().dictionary.modalData?.word.examples.join(", ");
 
-            if (!editWordValue || !editWordTranslations || !editWordExamples || !editWordId) return;
+            if (!editWordValue || !editWordTranslations || !editWordId) return;
 
             const editWord = {
                 id: editWordId,
@@ -37,13 +37,13 @@ export const editWordThunk = (): AppThunk =>
             });
             const { data: { message, error }} = response;
 
-            dispatch(dictionaryActions.successUpdating(message));
+            dispatch(dictionaryActions.successSaving(message));
         } catch (error: any) {
             const errorMessage: string = error.response.data.message;
             const errorCode: number = error.response.status;
             if (errorCode === 403) {
                 dispatch(loginActions.logOut());
             }
-            dispatch(dictionaryActions.failedUpdating({errorMessage, errorCode}));
+            dispatch(dictionaryActions.failedSaving({errorMessage, errorCode}));
         }
     };

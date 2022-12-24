@@ -1,22 +1,25 @@
 import InputPanel from "../../../components/input-panel/input-panel";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { dictionaryActions } from "../../../store/modules/dictionary";
-import { selectTranslationValue } from "../../../store/modules/dictionary/selectors";
+import { selectModalTranslationByIdx } from "../../../store/modules/dictionary/selectors";
 import Error from "../../../components/icons/error/error";
 
 interface PropsType {
     idxTranslation: number,
     externalStyles?: any,
+    wordTranslationsIsError: boolean,
+    setWordTranslationsIsError: (wordTranslationsIsError: boolean) => void,
 }
 
 const NewWordTranslationsContainer = (props: PropsType) => {
-    const { idxTranslation, externalStyles } = props;
+    const { idxTranslation, externalStyles, wordTranslationsIsError, setWordTranslationsIsError } = props;
 
     const dispatch = useAppDispatch();
 
-    const translationValue = useAppSelector(state => selectTranslationValue(state, idxTranslation));
+    const translationValue = useAppSelector(state => selectModalTranslationByIdx(state, idxTranslation));
 
     const setTranslationValue = (value: string) => {
+        setWordTranslationsIsError(false);
         dispatch(dictionaryActions.editTranslation({ newValue: value, idx: idxTranslation }));
     }
 
@@ -28,6 +31,7 @@ const NewWordTranslationsContainer = (props: PropsType) => {
             setInputValue={setTranslationValue}
             externalStyles={externalStyles}
             placeholder="Выберите или введите перевод"
+            icon={wordTranslationsIsError ? <Error/> : null}
         />
     )
 }

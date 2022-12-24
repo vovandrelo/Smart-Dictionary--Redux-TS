@@ -5,7 +5,7 @@ import { __dirname, __filename } from "../app.js";
 class DictionaryModel {
     async getUserWords(userId) {
         try {
-            const queryText = 'SELECT * FROM USER_WORDS WHERE id_user=$1';
+            const queryText = 'SELECT * FROM USER_WORDS WHERE id_user=$1 ORDER BY date_added DESC';
             const queryParams = [userId];
             const words = (await pool.query(queryText, queryParams)).rows;
             return { error: false, message: "The user is not registered yet", words }
